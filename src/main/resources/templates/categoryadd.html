@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Category Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="datetime-local"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="datetime-local"]:focus,
+        select:focus {
+            border-color: #007BFF;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(226, 106, 44);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: rgb(153, 60, 13);
+        }
+        .form-footer {
+            text-align: center;
+            margin-top: 10px;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <form th:action="@{/categoryadd}" th:object="${category}" method="post">
+        <h1>Category Form</h1>
+        <input type="hidden" th:field="*{category_id}" />
+        <div>
+            <label for="category_name">Category Name:</label>
+            <input type="text" id="category_name" name="category_name" required th:field="*{category_name}">
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required th:field="*{description}">
+        </div>
+        <div>
+            <label for="status">Status:</label>
+            <select id="status" name="status" required th:field="*{status}">
+                <option value="In Stock">In Stock</option>
+                <option value="Out of Stock">Out of Stock</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+</body>
+</html>

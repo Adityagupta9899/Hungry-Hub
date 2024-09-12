@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hungry Hub</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url(assets/images/bt1.jpg);
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .container {
+        background: #fff;
+        padding: 50px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        width: 650px;
+        padding: 10px;
+        background-color: rgb(226, 106, 44);
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: rgb(134, 53, 13);
+      }
+
+      .step {
+        display: none;
+      }
+
+      .step.active {
+        display: block;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Restaurant <span>Registration</span></h1>
+      <form action="/saverestaurant">
+        <!-- Step 1: Basic Information -->
+        <div class="step step-1 active">
+          <h2>Step 1: Basic Information</h2>
+          <label for="name">Restaurant Name:</label>
+          <input type="text" id="name" name="restaurant_name" required />
+
+          <label for="owner">Owner Name:</label>
+          <input type="text" id="owner" name="restaurant_owner" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required />
+
+          <div class="buttons">
+            <button type="button" id="nextStep1">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Location Details -->
+        <div class="step step-2">
+          <h2>Step 2: Location Details</h2>
+          <label for="address">Address:</label>
+          <input type="text" id="address" name="address" required />
+
+          <label for="landmark">Landmark:</label>
+          <input type="text" id="landmark" name="landmark" />
+
+          <label for="state-city">State and City:</label>
+          <select id="state-city" name="state_city" required>
+              <option value="" disabled selected>Select State and City</option>
+              <option value="Maharashtra-Mumbai">Maharashtra - Mumbai</option>
+              <option value="Maharashtra-Pune">Maharashtra - Pune</option>
+              <option value="Maharashtra-Nagpur">Maharashtra - Nagpur</option>
+              <option value="Delhi-New Delhi">Delhi - New Delhi</option>
+              <option value="Karnataka-Bangalore">Karnataka - Bangalore</option>
+              <option value="Telangana-Hyderabad">Telangana - Hyderabad</option>
+              <option value="Tamil Nadu-Chennai">Tamil Nadu - Chennai</option>
+              <option value="West Bengal-Kolkata">West Bengal - Kolkata</option>
+              <option value="Gujarat-Ahmedabad">Gujarat - Ahmedabad</option>
+              <option value="Rajasthan-Jaipur">Rajasthan - Jaipur</option>
+              <option value="Uttar Pradesh-Lucknow">Uttar Pradesh - Lucknow</option>
+              <option value="Uttar Pradesh-Kanpur">Uttar Pradesh - Kanpur</option>
+              <option value="Madhya Pradesh-Indore">Madhya Pradesh - Indore</option>
+              <option value="Madhya Pradesh-Bhopal">Madhya Pradesh - Bhopal</option>
+          </select>
+          
+          <label for="pincode">PinCode:</label>
+          <input type="number" id="pincode" name="pincode" required />
+
+          <div class="buttons">
+            <button type="button" id="prevStep2">Previous</button>
+            <button type="button" id="nextStep2">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Restaurant Details -->
+        <div class="step step-3">
+          <h2>Step 3: Restaurant Details</h2>
+          <label for="type">Restaurant Type:</label>
+          <select id="type" name="restaurant_type" required>
+            <option value="fast_food">Fast Food</option>
+            <option value="casual_dining">Casual Dining</option>
+            <option value="fine_dining">Fine Dining</option>
+            <option value="cafe">Café</option>
+            <option value="buffet">Buffet</option>
+            <option value="food_truck">Food Truck</option>
+          </select>
+
+          <label for="cuisine">Cuisine Type:</label>
+          <input type="text" id="cuisine" name="cuisine" required />
+
+          <label for="hours">Opening Hours:</label>
+          <input type="text" id="hours" name="hours" required />
+
+          <label for="menu">Menu (Upload):</label>
+          <input
+            type="file"
+            id="menu"
+            name="menu"
+            accept="application/pdf"
+            required
+          />
+
+          <label for="averageCost">Average Cost for Two:</label>
+          <input type="number" id="averageCost" name="averageCost" required />
+
+          <div class="buttons">
+            <button type="button" id="prevStep3">Previous</button>
+            <button type="button" id="nextStep3">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Photos and Media -->
+        <div class="step step-4">
+          <h2>Step 4: Photos and Media</h2>
+          <label for="photo">Photo of Restaurant:</label>
+          <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+            required
+          />
+
+          <label for="logo">Logo (Upload):</label>
+          <input type="file" id="logo" name="logo" accept="image/*" required />
+
+          <div class="buttons">
+            <button type="button" id="prevStep4">Previous</button>
+            <button type="button" id="nextStep4">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 5: Legal and Operational Details -->
+        <div class="step step-5">
+          <h2>Step 5: Legal and Operational Details</h2>
+          <label for="businessRegistration"
+            >Business Registration Document:</label
+          >
+          <input
+            type="file"
+            id="businessRegistration"
+            name="businessRegistration"
+            accept="application/pdf"
+            required
+          />
+
+          <label for="taxId">Tax Identification Number:</label>
+          <input type="text" id="taxId" name="taxId" required />
+
+          <label for="licenses">Additional Licenses:</label>
+          <input
+            type="file"
+            id="licenses"
+            name="licenses"
+            accept="application/pdf"
+            required
+          />
+
+          <div class="buttons">
+            <button type="button" id="prevStep5">Previous</button>
+            <!-- <form th:action="@{/saverestaurant}"> -->
+            <button type="submit">Register</button>
+          <!-- </form> -->
+          </div>
+        </div>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("nextStep1")
+        .addEventListener("click", function () {
+          showStep(2);
+        });
+
+      document
+        .getElementById("prevStep2")
+        .addEventListener("click", function () {
+          showStep(1);
+        });
+
+      document
+        .getElementById("nextStep2")
+        .addEventListener("click", function () {
+          showStep(3);
+        });
+
+      document
+        .getElementById("prevStep3")
+        .addEventListener("click", function () {
+          showStep(2);
+        });
+
+      document
+        .getElementById("nextStep3")
+        .addEventListener("click", function () {
+          showStep(4);
+        });
+
+      document
+        .getElementById("prevStep4")
+        .addEventListener("click", function () {
+          showStep(3);
+        });
+
+      document
+        .getElementById("nextStep4")
+        .addEventListener("click", function () {
+          showStep(5);
+        });
+
+      document
+        .getElementById("prevStep5")
+        .addEventListener("click", function () {
+          showStep(4);
+        });
+
+      document
+        .getElementById("zomatoForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const name = document.getElementById("name").value;
+          const owner = document.getElementById("owner").value;
+          const email = document.getElementById("email").value;
+          const phone = document.getElementById("phone").value;
+          const address = document.getElementById("address").value;
+          const landmark = document.getElementById("landmark").value;
+          const latitude = document.getElementById("latitude").value;
+          const longitude = document.getElementById("longitude").value;
+          const type = document.getElementById("type").value;
+          const cuisine = document.getElementById("cuisine").value;
+          const hours = document.getElementById("hours").value;
+          const menu = document.getElementById("menu").files[0];
+          const averageCost = document.getElementById("averageCost").value;
+          const paymentMethods =
+            document.getElementById("paymentMethods").value;
+          const photo = document.getElementById("photo").files[0];
+          const logo = document.getElementById("logo").files[0];
+          const businessRegistration = document.getElementById(
+            "businessRegistration"
+          ).files[0];
+          const taxId = document.getElementById("taxId").value;
+          const licenses = document.getElementById("licenses").files[0];
+
+          if (
+            validateForm(
+              name,
+              owner,
+              email,
+              phone,
+              address,
+              latitude,
+              longitude,
+              type,
+              cuisine,
+              hours,
+              menu,
+              averageCost,
+              paymentMethods,
+              photo,
+              logo,
+              businessRegistration,
+              taxId,
+              licenses
+            )
+          ) {
+            alert("Restaurant registered successfully!");
+            document.getElementById("zomatoForm").reset();
+            showStep(1); // Reset to the first step
+          }
+        });
+
+      function showStep(step) {
+        const steps = document.querySelectorAll(".step");
+        steps.forEach((stepDiv, index) => {
+          stepDiv.classList.toggle("active", index + 1 === step);
+        });
+      }
+
+      function validateForm(
+        name,
+        owner,
+        email,
+        phone,
+        address,
+        latitude,
+        longitude,
+        type,
+        cuisine,
+        hours,
+        menu,
+        averageCost,
+        paymentMethods,
+        photo,
+        logo,
+        businessRegistration,
+        taxId,
+        licenses
+      ) {
+        if (
+          !name ||
+          !owner ||
+          !email ||
+          !phone ||
+          !address ||
+          !latitude ||
+          !longitude ||
+          !type ||
+          !cuisine ||
+          !hours ||
+          !menu ||
+          !averageCost ||
+          !paymentMethods ||
+          !photo ||
+          !logo ||
+          !businessRegistration ||
+          !taxId ||
+          !licenses
+        ) {
+          alert("All fields are required!");
+          return false;
+        }
+
+        if (!validateEmail(email)) {
+          alert("Please enter a valid email address!");
+          return false;
+        }
+
+        if (!validatePhone(phone)) {
+          alert("Please enter a valid phone number!");
+          return false;
+        }
+
+        return true;
+      }
+
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+
+      function validatePhone(phone) {
+        const re = /^\d{10}$/;
+        return re.test(phone);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        showStep(1);
+      });
+    </script>
+  </body>
+</html>

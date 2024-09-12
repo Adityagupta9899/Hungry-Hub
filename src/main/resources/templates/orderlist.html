@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Hungry Hub</title>
+    <link rel="stylesheet" href="/assets/css/customerlist.css" />
+    <style>
+        .button-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .button-container form {
+            margin: 0;
+        }
+        .button-container button {
+            padding: 10px 15px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+        /* table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        } */
+    </style>
+</head>
+<body>
+    <table>
+        <caption>
+            Order
+            <span>Details</span>
+        </caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer_id</th>
+                <th>Custome_name</th>
+                <th>Address</th>
+                <th>Timing</th>
+                <th>Status</th>
+                <th>payment_method</th>
+                <th>Total_Amount</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="entity : ${entities}">
+                <td th:text="${entity.id}"></td>
+                <td th:text="${entity.customer_id}"></td>
+                <td th:text="${entity.name}"></td>
+                <td th:text="${entity.address}"></td>
+                <td th:text="${entity.added_on}"></td>
+                <td th:text="${entity.status}"></td>
+                <td th:text="${entity.payment_method}"></td>
+                <td th:text="${entity.grand_total}"></td>
+                <td>
+                    <form th:action="@{/orderlist/delete/{id}(id=${entity.id})}" method="get">
+                        <button type="submit" class="delete">Delete</button>
+                    </form>
+                    
+                </td>
+                <td>
+                    <form th:action="@{/orderlist/update/{id}(id=${entity.id})}" method="get">
+                        <button type="submit" class="update">Update</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

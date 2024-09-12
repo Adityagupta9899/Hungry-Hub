@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Hungry Hub</title>
+    <link rel="stylesheet" th:href="@{/assets/css/customerlist.css}" />
+    <style>
+        .button-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .button-container form {
+            margin: 0;
+        }
+        .button-container button {
+            padding: 10px 15px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <form action="/foodadd" method="get">
+            <button type="submit">Add Food</button>
+        </form>
+        <form action="/categorylist" method="get">
+            <button type="submit">Category</button>
+        </form>
+    </div>
+    <table>
+        <caption>
+            Food <span>Data</span>
+        </caption>
+        <thead>
+            <tr>
+                <th>Item_id</th>
+                <th>Item_name</th>
+                <th>Item_Price</th>
+                <th>Item_Photo</th>
+                <th>Category_name</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="entity : ${entities}">
+                <td th:text="${entity.Item_id}"></td>
+                <td th:text="${entity.Item_name}"></td>
+                <td th:text="${entity.item_price}"></td>
+                <td><img th:src="@{${entity.item_photo}}" alt="Item Photo" style="width: 50px; height: 50px;"></td>
+                <td th:text="${entity.category}"></td>
+                <td th:text="${entity.Description}"></td>
+                <td th:text="${entity.type}"></td>
+                <td th:text="${entity.Status}"></td>
+                <td>
+                    <form th:action="@{/foodlist/delete/{Item_id}(Item_id=${entity.Item_id})}" method="get">
+                        <button type="submit" class="delete">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/foodlist/update/{Item_id}(Item_id=${entity.Item_id})}" method="get">
+                        <button type="submit" class="update">Update</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

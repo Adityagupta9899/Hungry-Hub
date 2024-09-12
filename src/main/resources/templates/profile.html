@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hungry Hub</title>
+  <link rel="stylesheet" href="/assets/css/profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <style>
+    .password-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .password-container input {
+      width: calc(100% - 30px);
+    }
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: black;
+      transition: color 0.3s ease;
+    }
+    .toggle-password:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome <span th:text="${user.Cust_name}"></span></h1>
+    <form th:action="@{/logout}" method="post">
+      <input type="file" id="photo-upload" accept="image/*"> 
+      <label for="photo-upload" id="photo-label">Change Profile Photo</label> 
+      <img th:src="@{/assets/images/profile.webp}" alt="Profile Picture" id="profile-pic">
+
+      <input type="text" id="Cust_name" name="Cust_name" placeholder="Your Name" th:value="${user.Cust_name}"> 
+      <input type="email" id="email" name="email" placeholder="Your Email" th:value="${user.email}"> 
+      <input type="text" id="cont" name="cont" placeholder="Contact Number" th:value="${user.cont}"> 
+      <input type="text" id="Address" name="Address" placeholder="Full Address" th:value="${user.Address}">
+
+      <div class="inp">
+        <button type="submit" name="action" value="logout" id="logoutBtn">Logout</button>
+        <button type="submit" name="action" value="save" id="saveChangeBtn">Save Change</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('photo-upload').addEventListener('change', function(event) {
+      var file = event.target.files[0];
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('profile-pic').src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+  </script>
+</body>
+</html>

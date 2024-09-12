@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Hungry Hub</title>
+    <link rel="stylesheet" href="/assets/css/customerlist.css" />
+  </head>
+  <body>
+    <table>
+      <caption>
+        Customer
+        <span>List</span>
+      </caption>
+      <thead>
+        <tr>
+          <th>Cust_id</th>
+          <th>Cust_name</th>
+          <th>Address</th>
+          <th>Email_id</th>
+          <th>Cont. no</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="entity : ${entities}">
+          <td th:text="${entity.ID}"></td>
+          <td th:text="${entity.Cust_name}"></td>
+          <td th:text="${entity.Address}"></td>
+          <td th:text="${entity.email}"></td>
+          <td th:text="${entity.cont}"></td>
+          <td>
+            <form
+              th:action="@{/customerlist/delete/{ID}(ID=${entity.ID})}"
+              method="get"
+            >
+              <button type="submit" class="delete">Delete</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hungry Hub</title>
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="/assets/css/Addtocart.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2">
+            <div class="header-logo">
+              <a href="index.html">
+                <img
+                  src="/assets/images/logo.png"
+                  width="160"
+                  height="36"
+                  alt="Logo"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-10">
+            <div class="main-navigation">
+              <button class="menu-toggle"><span></span><span></span></button>
+              <nav class="header-menu">
+                <ul class="menu food-nav-menu">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="category">Category</a></li>
+                </ul>
+              </nav>
+              <div class="header-right">
+                <form action="#" class="header-search-form for-des">
+                  <input
+                    type="search"
+                    class="form-input"
+                    placeholder="Search Here..."
+                  />
+                  <button type="submit">
+                    <i class="uil uil-search"></i>
+                  </button>
+                </form>
+                <a href="addtocart" class="header-btn header-cart">
+                  <i class="uil uil-shopping-bag"></i>
+                  <span class="cart-number">3</span>
+                </a>
+                <a href="singin" class="header-btn">
+                  <i class="uil uil-user-md"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="heading">
+      <h1>Your <span>Cart</span></h1>
+    </div>
+    <div class="cart-box">
+      <div class="cart" th:each="myorderdetail : ${myorderdetails}">
+        <div class="details">
+          <span class="title" th:text="${myorderdetail.product_name}"
+            >Fresh Chicken Veggies</span
+          >
+          <span class="price" th:text="${myorderdetail.subtotal}">Rs.499</span>
+        </div>
+        <div class="quantity">
+          <button class="dish-add-btn minus">
+            <i class="uil uil-minus"></i>
+          </button>
+          <span class="value" th:text="${myorderdetail.qty}">0</span>
+          <button class="dish-add-btn plus">
+            <i class="uil uil-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="quantity">
+      <span class="total-label">Total Amount:</span>
+      <span class="total-amount" th:text="${totalSubtotal}">Rs. 2100</span>
+      <a
+        class="order-now-btn"
+        th:href="@{/placeorder/{custid}(custid=${custid})}"
+        >Order Now</a
+      >
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".dish-add-btn.plus").forEach((button) => {
+          button.addEventListener("click", () => {
+            const quantityElement = button.previousElementSibling;
+            let quantity = parseInt(quantityElement.textContent, 10);
+            quantityElement.textContent = ++quantity;
+          });
+        });
+
+        document.querySelectorAll(".dish-add-btn.minus").forEach((button) => {
+          button.addEventListener("click", () => {
+            const quantityElement = button.nextElementSibling;
+            let quantity = parseInt(quantityElement.textContent, 10);
+            if (quantity > 1) {
+              quantityElement.textContent = --quantity;
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

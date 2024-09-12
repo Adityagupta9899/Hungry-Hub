@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hungry Hub</title>
+    <link rel="stylesheet" href="/assets/css/Delivery.css">
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/{id}(id=${custid})}"
+        th:object=${cust} >
+        <h1>Order Was Placed Successfuly!!!</h1>
+        <section class="user-details">
+            <h2>Your Order Number is: </h2><span th:text="${orderid}"></span>
+            <br>
+            <input class="btn" type="submit" value="Continue Shoping" >
+            </section>
+        </form>
+    </div>
+</body>
+</html>

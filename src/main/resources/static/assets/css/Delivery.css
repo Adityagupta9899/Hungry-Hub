@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+	background-image: url(/assets/images/bt1.jpg);
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+
+.user-details p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.btn {
+	width: 100%;
+	border: none;
+	height: 20px;
+	/* background-color: red; */
+	background-color: rgb(226, 106, 44);
+	color: white;
+	font-size: 19px;
+	font-weight: 500;
+	padding-top: 14px;
+	border-radius: 4px;
+	padding-bottom: 40px;
+	margin: 10px 0 12px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+	background-color: rgb(153, 60, 13);
+}
+
+
+
+

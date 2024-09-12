@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Hungry Hub</title>
+    <link rel="stylesheet" href="/assets/css/customerlist.css" />
+    <style>
+        .button-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .button-container form {
+            margin: 0;
+        }
+        .button-container button {
+            padding: 10px 15px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+        /* table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        } */
+    </style>
+</head>
+<body>
+    <table>
+        <caption>
+            Bill
+            <span>Details</span>
+        </caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Bill_Amount</th>
+                <th>Custome_Id</th>
+                <th>Order_ID</th>
+                <!-- <th>Payment_Status</th> -->
+                <th>Payment_Mode</th>
+                <th>Delete</th>
+                <th>Print</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="entity : ${entities}">
+                <td th:text="${entity.id}"></td>
+                <td th:text="${entity.bill_amount}"></td>
+                <td th:text="${entity.custid}"></td>
+                <td th:text="${entity.orderid}"></td>
+                <!-- <td th:text="${entity.payment_status}"></td> -->
+                <td th:text="${entity.mode}"></td>
+                <td>
+                    <form th:action="@{/billdetalis/delete/{id}(id=${entity.id})}" method="get">
+                        <button type="submit" class="delete">Delete</button>
+                    </form>
+                    
+                </td>
+                <td>
+                    <!-- <form th:action="@{/orderlist/update/{id}(id=${entity.id})}" method="get"> -->
+                        <button type="submit" class="update">Print</button>
+                    <!-- </form> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

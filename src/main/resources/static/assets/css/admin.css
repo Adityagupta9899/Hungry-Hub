@@ -1,0 +1,57 @@
+.admin-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  h1 {
+    font-size: 58px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1); /* Add a subtle text shadow */
+  }
+  h1 span{
+    color: #ff8243;
+  }
+  
+  .row {
+    display: flex;
+  }
+  a{
+    text-decoration: none;
+  }
+  
+  
+  .box {
+    width: 500px; /* Increased width */
+    height: 250px; /* Increased height */
+    border: 2px solid #ccc; /* Increased border thickness */
+    text-align: center;
+    line-height: 250px;
+    font-size: 28px; /* Larger font size */
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition */
+    color: white; /* Dark text color on hover */
+
+  }
+  
+  .box:hover {
+    background-color: #f0f0f0; /* Lighter background color on hover */
+    color: black; /* Dark text color on hover */
+    transform: translateY(-5px); /* Lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+  }
+  
+  /* Assigning different light and dark dual-color combinations to each box */
+  #box1 { background: linear-gradient(45deg, #78ffd6, #007991); }
+  #box2 { background: linear-gradient(45deg, #f6d365, #fda085); }
+  #box3 { background: linear-gradient(45deg, #00c6ff, #0072ff); }
+  #box4 { background: linear-gradient(45deg, #4facfe, #00f2fe); }
+  #box5 { background: linear-gradient(45deg, #6a11cb, #2575fc); }
+  #box6 { background: linear-gradient(45deg, #06beb6, #48b1bf); }
+  
